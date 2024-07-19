@@ -1,7 +1,3 @@
-Sure, here's a comprehensive README template for your todo app project using FastAPI and Flutter:
-
----
-
 # Todo App
 
 ## Table of Contents
@@ -46,7 +42,7 @@ The Todo App is a simple yet powerful task management application developed usin
 
 ### Frontend
 - **Framework:** Flutter
-- **State Management:** Provider (or any preferred state management solution)
+- **State Management:** Bloc (Business Logic Component)
 
 ## Getting Started
 
@@ -64,50 +60,49 @@ The Todo App is a simple yet powerful task management application developed usin
     ```
 
 2. Create a virtual environment and activate it:
-    ```bash
+    ```
     python -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
 3. Install the dependencies:
-    ```bash
+    ```
     pip install -r requirements.txt
     ```
 
 4. Set up the database:
-    ```bash
+    ```
     python main.py create_db
     ```
 
 5. Run the FastAPI server:
-    ```bash
+    ```
     uvicorn main:app --reload
     ```
 
-
 #### Frontend (Flutter)
 1. Navigate to the frontend directory:
-    ```bash
+    ```
     cd ../frontend
     ```
 
 2. Install the dependencies:
-    ```bash
+    ```
     flutter pub get
     ```
 
 3. Run the Flutter app:
-    ```bash
+    ```
     flutter run
     ```
 
 ### Running the Application
 - Start the FastAPI server:
-    ```bash
+    ```
     uvicorn main:app --reload
     ```
 - Run the Flutter app:
-    ```bash
+    ```
     flutter run
     ```
 
@@ -150,6 +145,9 @@ frontend/
 │   ├── main.dart
 │   ├── models/
 │   ├── screens/
+│   ├── blocs/
+│   ├── events/
+│   ├── states/
 │   ├── services/
 │   ├── widgets/
 ├── test/
@@ -169,8 +167,8 @@ Contributions are welcome! Please follow the steps below to contribute:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
-- **Email:** yourname@example.com
-- **GitHub:** [yourusername](https://github.com/yourusername)
+- **Email:** bobur.yu@anur.tech
+- **GitHub:** [dev-yusupov](https://github.com/dev-yusupov)
 
 ---
 
