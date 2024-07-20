@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(version="1.0.0", debug=True, title="Todo API", description="APIs for Todo App")
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def read_items():
+    return [{"name": "Empanada"}, {"name": "Arepa"}]
 
 if __name__ == "__main__":
     import uvicorn
