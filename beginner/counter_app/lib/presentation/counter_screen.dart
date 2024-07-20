@@ -1,10 +1,11 @@
 import 'package:counter_app/core/usecases/counter_usecases.dart';
 import 'package:counter_app/presentation/counter_provider.dart';
-import 'package:counter_app/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CounterScreen extends StatelessWidget {
+  const CounterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final counter = Provider.of<CounterProvider>(context);
