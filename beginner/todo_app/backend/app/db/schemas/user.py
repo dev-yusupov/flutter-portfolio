@@ -4,7 +4,7 @@ class UserBase(BaseModel):
     username: str
 
 class UserCreate(UserBase):
-    hashed_password: str
+    password: str
 
 class UserOut(UserBase):
     id: int

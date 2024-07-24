@@ -6,7 +6,7 @@ from app.db.schemas import UserCreate, UserOut, Token
 from app.services import UserService
 from app.repository import UserRepository
 from app.core.security import create_access_token, verify_password, decode_access_token, create_refresh_token
-from app.db.base import engine, Base, SessionLocal
+from app.db.base import engine, Base, SessionLocal, get_db
 from app.core.config import settings
 
 Base.metadata.create_all(bind=engine)
@@ -17,16 +17,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 user_repository = UserRepository()
 user_service = UserService(user_repository)
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    except Exception as e:
-        db.rollback()
-        raise
-    finally:
-        db.close()
 
 def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
     payload = decode_access_token(token)
@@ -46,7 +36,7 @@ def login_for_access_token(db: Session = Depends(get_db), form_data: OAuth2Passw
     Endpoint to login users.
     """
     user = user_service.get_by_username(db, form_data.username)
-    if not user or not verify_password(form_data.password, user.hashed_password):
+    if not user or not verify_password(form_data.password, user.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
@@ -63,7 +53,7 @@ def login_for_access_token(db: Session = Depends(get_db), form_data: OAuth2Passw
         "token_type": "bearer"
     }
 
-@router.post("/signup/", response_model=UserOut, summary="Create new user.")
+@router.post("/signup/", response_model=UserOut, summary="Create new user.", status_code=201)
 async def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db_user = user_service.get_by_username(db, user.username)
     if db_user:

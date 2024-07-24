@@ -9,7 +9,7 @@ class UserRepository:
         return db.query(User).filter(User.username == username).first()
     
     def create(self, db: Session, user: UserCreate):
-        db_user = User(username=user.username, hashed_password=user.hashed_password)
+        db_user = User(username=user.username, password=user.password)
         db.add(db_user)
         db.commit()
         db.refresh(db_user)
