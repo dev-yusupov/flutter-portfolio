@@ -1,10 +1,9 @@
-from sqlalchemy import Column, UUID, String, Boolean
-from app.db.session import Base
+from sqlalchemy import Column, String, Integer
+
+from app.db import Base
 
 class User(Base):
     __tablename__ = "users"
-
-    id = Column(UUID, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True)
+    id = Column('id', Integer, primary_key=True, index=True)
+    username = Column("username", String(64), unique=True, index=True)
     password = Column(String)
-    is_active = Column(Boolean, default=True)
