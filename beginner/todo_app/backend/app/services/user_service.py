@@ -10,7 +10,7 @@ class UserService:
         self.user_repository = user_repository
 
     def get_by_username(self, db: Session, username: str):
-        return self.user_repository.get_by_username(db, username)
+        return self.user_repository.get_by_username(db=db, username=username)
 
     def create(self, db: Session, user: UserCreate):
         hashed_password = get_password_hash(user.password)
