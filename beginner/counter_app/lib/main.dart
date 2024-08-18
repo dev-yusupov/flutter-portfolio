@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       home: ChangeNotifierProvider(
         create: (context) => CounterProvider(counter: Counter(value: 0)),
-        child: CounterScreen(),
+        child: const CounterScreen(),
       ),
     );
   }
